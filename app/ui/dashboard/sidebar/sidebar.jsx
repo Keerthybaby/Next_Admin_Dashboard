@@ -31,7 +31,7 @@ const menuItems = [
       },
       {
         title: "Products",
-        path: "/dashboard/Products",
+        path: "/dashboard/products",
         icon: <MdShoppingBag />,
       },
       {
