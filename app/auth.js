@@ -1,13 +1,13 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { authConfig } from "../authConfig";
-import { connectToDB } from "./lib/utils";
+import { authConfig } from "./authconfig";
 import { User } from "./lib/models";
 import bcrypt from "bcrypt";
+import { connectToDB } from "./lib/utils";
 
 const login = async (credentials) => {
   try {
-    connectToDB();
+     connectToDB();
     const user = await User.findOne({ username: credentials.username });
     if (!user) throw new Error("Wrong credentials!");
 
@@ -33,10 +33,11 @@ export const { signIn, signOut, auth } = NextAuth({
         try {
           const user = await login(credentials);
           return user;
-        } catch (error) {
+        } catch (err) {
           return null;
         }
       },
     }),
   ],
 });
+
